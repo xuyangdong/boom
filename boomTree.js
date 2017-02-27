@@ -32,8 +32,12 @@ function insert(data){
   }
 }
 
+function inOrder(){
+  
+}
+
 function BST(){
   this.root = null
   this.insert = insert
-  
+  this.inOrder = order
 }
