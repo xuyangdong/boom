@@ -124,3 +124,72 @@ function findMedianSortedArrays2(arrayA,arrayB,k){
 array1 = [0,1,2,3,4,5,6,7,8,9]
 array2 = [10,11,12,13,14,15,16,17,18,19]
 console.log("->2:",findMedianSortedArrays2(array1,array2,3))
+
+function longestConsecutive(nums){
+  let length = 0
+  let longest = 0
+  let used = nums.reduce((pre,cur)=>{
+    pre[cur] = false
+    return pre
+  },{})
+
+  nums.forEach(v => {
+    length = 0
+    if(!used[v]){
+      used[v] = true
+      length ++
+      for(let i = v+1;(typeof used[i])!='undefined';i++){
+        used[i] = true
+        length++
+      }
+      for(let i = v-1;(typeof used[i])!='undefined';i--){
+        used[i] = true
+        length++
+      }
+      longest = longest>length?longest:length
+    }
+  })
+  return longest
+}
+array = [100, 4, 200, 1, 3, 2,5,6,201,202,203,204,205,206,207,208]
+console.log("-->:",longestConsecutive(array))
+
+function twoSum(array,target){
+  let dataMap = array.reduce((pre,cur,index)=>{
+    pre[cur] = index
+    return pre
+  },{})
+  for(let data in dataMap){
+    let restData = target-data
+    if(dataMap[restData]){
+      return dataMap[data]<dataMap[restData]?[dataMap[data],dataMap[restData]]:[dataMap[restData],dataMap[data]]
+    }
+  }
+  return []
+}
+array = [100, 4, 200, 1, 3, 2,5,6,201,202,203,204,205,206,207,208]
+console.log("-->:",twoSum(array,204))
+
+function threeSum(array,target){
+  array.sort()
+  let result = []
+  for(let k = 0;k<array.length;k++){
+    let i=0,j=array.length-1
+    for(;i<k&&j>k;){
+      if(array[i]+array[k]+array[j]<target){
+        i++
+      }else if(array[i]+array[k]+array[j]>target){
+        j--
+      }else{
+        result.push({i,k,j})
+        i++
+        j--
+      }
+    }
+  }
+  return result
+}
+
+array = [-1,0,1,2,-1,-4]
+console.log(array.sort())
+console.log("-->:",threeSum(array,0))
