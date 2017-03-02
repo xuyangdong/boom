@@ -193,3 +193,13 @@ function threeSum(array,target){
 array = [-1,0,1,2,-1,-4]
 console.log(array.sort())
 console.log("-->:",threeSum(array,0))
+
+function threeSumClosest(array,target){
+  array.sort()
+  let result = []
+  for(let k = 0;k<array.length;k++){
+    let i =0,j = array.length-1
+    
+  }
+
+}
