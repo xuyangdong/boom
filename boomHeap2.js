@@ -1,26 +1,50 @@
-function makeHeap(array){
-  let lastUnLeaf = Math.floor(array.length/2)//下标从1开始
+export function makeHeap(array,length){
+  let lastUnLeaf = Math.floor((length)/2)//下标从1开始
   function buildHeap(index){
     let leftChild = 2*index
     let rightChild = 2*index+1
-    let min = 0
-    if(rightChild<=array.length){
-      min = array[index-1]<array[leftChild-1]?index:leftChild
-      min = array[min-1]<array[rightChild-1]?min:rightChild
+    let max = 0
+    if(rightChild<=length){
+      //有左右子节点
+      max = array[index-1]>array[leftChild-1]?index:leftChild
+      max = array[max-1]>array[rightChild-1]?max:rightChild
+      if(max!=index){
+        let temp = array[index-1]
+        array[index-1] = array[max-1]
+        array[max-1] = temp
+        buildHeap(max)
+      }
+    }else if(rightChild>length&&leftChild<=length){
+      //只有左子节点
+      max = array[index-1]>array[leftChild-1]?index:leftChild
       let temp = array[index-1]
-      array[index-1] = array[min-1]
-      array[min-1] = temp
-      buildHeap(min)
+      array[index-1] = array[max-1]
+      array[max-1] = temp
+      if(max!=index){
+        buildHeap(max)
+      }
+
     }
   }
   while(lastUnLeaf>0){
     buildHeap(lastUnLeaf)
-    console.log("-->:",lastUnLeaf,array)
     lastUnLeaf--
   }
 }
 
-let array = [9,12,17,30,50,20,60,65,4,49]
+function heapSort(array){
+  let right = array.length-1
+  makeHeap(array,right+1)
+  while(right>0){
+    let temp = array[right]
+    array[right] = array[0]
+    array[0] = temp
+    right--
+    makeHeap(array,right+1)
+  }
+}
+
+let array = [16,7,90,20,17,18]
 console.log("->:",array)
-makeHeap(array)
+heapSort(array)
 console.log("->:",array)
