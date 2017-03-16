@@ -1,0 +1,3 @@
+function hasSubTree(tree,targetTree){
+  
+}
