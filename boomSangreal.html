@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- 使用css盒模型实现圣杯布局 -->
+<html>
+  <head>
+    <style>
+    .container{
+      margig: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .parent{
+      width: 600px;
+      border: 2px solid;
+      margin: 0 auto;
+    }
+    .top{
+      background-color: #666;
+    }
+    .main{
+      padding-left: 100px;/* 左边的内边距和左盒子的宽度相同 */
+      padding-right: 150px;/* 右边的内边距和右盒子的宽度相同 */
+      overflow: hidden;
+    }
+    .left{
+      width: 100px;
+      background-color: #e79f6d;
+      float: left;
+      height: 100%;
+      margin-left: -100px;/* 因为content设置的宽度100%，所以left位置被挤在了上一行，通过设置margin-left：-100px使它左边 */
+      padding-bottom: 2000px;
+      margin-bottom: -2000px;
+    }
+    .content{
+      width: 100%;
+      float: left;
+      height: 100px;
+      background-color: #d6d6d6;
+      padding-bottom: 2000px;
+      margin-bottom: -2000px;
+    }
+    .right{
+      width: 150px;
+      float: left;
+      background-color: #77BBDD;
+      margin-right: -150px;
+      padding-bottom: 2000px;
+      margin-bottom: -2000px;
+    }
+    .foot{
+      background-color: #666;
+      clear: both;
+    }
+    </style>
+  </head>
+  <body>
+    <div class='container'>
+      <div class='parent'>
+        <div class='top'>这是Top!</div>
+        <div class='main'>
+          <div class='left'>这是Left!</div>
+          <div class='content'>这是Content!</div>
+          <div class='right'>这是Right!</div>
+        </div>
+        <div class='foot'>这是Foot!</div>
+      </div>
+    </div>
+  </body>
+</html>
